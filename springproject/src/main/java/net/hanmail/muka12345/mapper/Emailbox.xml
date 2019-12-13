@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="net.hanmail.muka12345.service.EmailDao">
+  <resultMap type="net.hanmail.muka12345.entities.Emailbox" id="emailMap">
+  <id property="m_seq" column="m_seq"/>
+  <id property="m_fromemail" column="m_fromemail"/>
+  <id property="m_fromname" column="m_name"/>
+  <id property="m_toemail" column="m_toemail"/>
+  <id property="m_cc" column="m_cc"/>  
+  <id property="m_toname" column="m_name"/>
+  <id property="m_title" column="m_title"/>
+  <id property="m_content" column="m_content"/>
+  <id property="m_attach" column="m_attach"/> 
+  <id property="m_date" column="m_date"/>
+  <id property="m_show" column="m_show"/>
+  <id property="m_temporary" column="m_temporary"/>
+  <id property="m_spam" column="m_spam"/>
+  <id property="m_delete" column="m_delete"/>
+  <id property="m_recvdel" column="m_recvdel"/>
+  <id property="m_sentdel" column="m_sentdel"/>
+  <id property="m_save" column="m_save"/>
+</resultMap>
+<!--    이메일 내용 db에넣기 -->
+   <insert id="emailsend" parameterType="HashMap">
+   insert into emailbox(m_seq,m_fromemail,m_fromname,m_toemail,m_cc,m_toname,m_title,m_content,m_attach,m_filesize,
+   m_date
+   )values(
+   (SELECT ifnull(MAX(m_seq)+1,1) FROM emailbox alias_seq),
+   #{m_fromemail,jdbcType=VARCHAR},
+   #{m_fromname,jdbcType=VARCHAR},
+   #{m_toemail,jdbcType=VARCHAR},
+   #{m_cc,jdbcType=VARCHAR},
+   #{m_toname,jdbcType=VARCHAR},
+   #{m_title,jdbcType=VARCHAR},
+   #{m_content,jdbcType=VARCHAR},
+   #{m_attach,jdbcType=VARCHAR},
+   #{m_filesize,jdbcType=VARCHAR},
+   #{m_date,jdbcType=VARCHAR}
+   )
+   </insert>
+     <insert id="emailTemporary" parameterType="HashMap">
+      insert into emailbox(m_seq,m_fromemail,m_fromname,m_toemail,m_cc,m_toname,m_title,m_content,m_attach,m_filesize,
+   m_date,m_temporary
+   )values(
+    (SELECT ifnull(MAX(m_seq)+1,1) FROM emailbox alias_seq),
+   #{m_fromemail,jdbcType=VARCHAR},
+   #{m_fromname,jdbcType=VARCHAR},
+   #{m_toemail,jdbcType=VARCHAR},
+   #{m_cc,jdbcType=VARCHAR},
+   #{m_toname,jdbcType=VARCHAR},
+   #{m_title,jdbcType=VARCHAR},
+   #{m_content,jdbcType=VARCHAR},
+   #{m_attach,jdbcType=VARCHAR},
+   #{m_filesize,jdbcType=VARCHAR},
+   #{m_date,jdbcType=VARCHAR},
+   'Y'
+   )
+   </insert>
+   <update id="updateEmail" parameterType="hashMap">
+      update emailbox set
+      m_fromemail=#{m_fromemail,jdbcType=VARCHAR}, 
+      m_fromname=#{m_fromname,jdbcType=VARCHAR}, 
+   	  m_toemail=#{m_toemail,jdbcType=VARCHAR},
+   	  m_cc=#{m_cc,jdbcType=VARCHAR},
+   	  m_toname=#{m_toname,jdbcType=VARCHAR},
+   	  m_title=#{m_title,jdbcType=VARCHAR},
+   	  m_content=#{m_content,jdbcType=VARCHAR},
+   	  m_attach=#{m_attach,jdbcType=VARCHAR},
+   	  m_filesize=#{m_filesize,jdbcType=VARCHAR},
+   	  m_date=#{m_date,jdbcType=VARCHAR},
+   	  m_temporary = 'N'
+   	  where m_seq = #{m_seq}
+   </update>
+     <update id="updateTemporary" parameterType="hashMap">
+      update emailbox set 
+   	  m_fromemail=#{m_fromemail,jdbcType=VARCHAR}, 
+      m_fromname=#{m_fromname,jdbcType=VARCHAR}, 
+   	  m_toemail=#{m_toemail,jdbcType=VARCHAR},
+   	  m_cc=#{m_cc,jdbcType=VARCHAR},
+   	  m_toname=#{m_toname,jdbcType=VARCHAR},
+   	  m_title=#{m_title,jdbcType=VARCHAR},
+   	  m_content=#{m_content,jdbcType=VARCHAR},
+   	  m_attach=#{m_attach,jdbcType=VARCHAR},
+   	  m_filesize=#{m_filesize,jdbcType=VARCHAR},
+   	  m_date=#{m_date,jdbcType=VARCHAR}
+   	  where m_seq=#{m_seq}
+   </update>
+   <select id="selectOne" parameterType="Integer" resultMap="emailMap">
+      select * from emailbox where m_seq=#{m_seq}
+   </select>
+<!--    삭제메일함 이동-삭제메일함에서 나오기     -->
+   <update id="deleteMailMove" parameterType="hashMap">
+   	  update emailbox set 
+   	  m_delete = 'Y'
+   	  where m_seq=#{m_seq}
+   </update>
+   <update id="mailMoveDelete" parameterType="hashMap">
+   	  update emailbox set 
+   	  m_delete = 'N'
+   	  where m_seq=#{m_seq}
+   </update>
+     <update id="mailRecvdel" parameterType="hashMap">
+   	  update emailbox set 
+   	  m_recvdel = 'Y'
+   	  where m_seq=#{m_seq}
+   </update>
+    <update id="mailSentdel" parameterType="hashMap">
+   	  update emailbox set 
+   	  m_sentdel = 'Y'
+   	  where m_seq=#{m_seq}
+   </update>
+    <update id="mailSaveUpdate" parameterType="hashMap">
+   	  update emailbox set 
+   	  m_save = 'Y'
+   	  where m_seq=#{m_seq}
+   </update>
+   <update id="saveMailMove" parameterType="hashMap">
+   	  update emailbox set 
+   	  m_save = 'N'
+   	  where m_seq=#{m_seq}
+   </update>
+<!--    완전삭제 -->
+   <delete id="deleteEmail" parameterType="Integer">
+   delete from emailbox where m_seq=#{m_seq}
+   </delete>
+<!-- 이메일 삭제 관련 -->
+<!--   스펨메일 이동 -->
+<update id="spamMailMove" parameterType="hashMap" >
+   	  update emailbox set 
+   	  m_spam = 'Y'
+   	  where m_seq=#{m_seq}
+   </update>
+   <update id="mailMoveSpam" parameterType="hashMap" >
+   	  update emailbox set 
+   	  m_spam = 'N'
+   	  where m_seq=#{m_seq}
+   </update>
+<!-- 이메일 스펨 관련 -->
+   <select id="inputMailPageList" parameterType="hashMap" resultMap="emailMap">
+    <include refid="select"></include>
+    <include refid="searchfrom"></include>
+    and
+    <include refid="inputwhere"></include>
+    order by
+    m_seq desc
+    limit 
+    #{startrow} , #{endrow}
+   </select>
+    <select id="outputMailList" resultMap="emailMap">
+    <include refid="select"></include>
+    <include refid="searchto"></include>
+    and
+    <include refid="outputwhere"></include>
+    order by
+    m_seq desc
+    limit 
+    #{startrow} , #{endrow}
+
+   </select>
+    <select id="spamMailList" resultMap="emailMap">
+     <include refid="select"></include>
+     <include refid="searchfrom"></include>
+     and
+     <include refid="spamwhere"></include>
+     order by
+     m_seq desc
+     limit 
+     #{startrow} , #{endrow}
+   </select>
+    <select id="temporaryMailList" resultMap="emailMap">
+     <include refid="select"></include>
+    <include refid="searchto"></include>
+    and
+    <include refid="temporarywhere"></include>
+    order by
+    m_seq desc
+    limit 
+    #{startrow} , #{endrow}
+   </select>
+    <select id="deleteMailList" resultMap="emailMap">
+     <include refid="select"></include>
+     <include refid="searchall"></include>
+    and
+    <include refid="deletewhere"></include>
+    order by
+    m_seq desc
+    limit 
+    #{startrow} , #{endrow}
+   </select>
+    <select id="saveMailList" resultMap="emailMap">
+     <include refid="select"></include>
+     <include refid="searchall"></include>
+    and
+    <include refid="savewhere"></include>
+    order by
+    m_seq desc
+    limit 
+    #{startrow} , #{endrow}
+   </select>
+   <select id="allMailList" resultMap="emailMap">
+   <include refid="select"></include>
+    order by
+    m_seq desc
+    limit 
+    #{startrow} , #{endrow}
+   </select>
+
+<!-- 	이메일 내용 확인시 열림확인 -->
+   <update id="showHit" parameterType="Integer">
+   update emailbox set m_show = 'Y' where m_seq=#{m_seq}
+   </update>
+   
+   
+  
+  
+ 
+
+   
+      <select id="selectDataTableList" resultMap="emailMap">
+  <include refid="select"></include>
+
+   </select>
+   
+    <select id="inputMailCount" parameterType="hashMap" resultType="Integer">
+   <include refid="count"></include>
+   <include refid="searchfrom"></include>
+   and
+   <include refid="inputwhere"></include>
+   </select>
+   <select id="temporaryMailCount" resultType="Integer">
+   <include refid="count"></include>
+   <include refid="searchto"></include>
+    and
+  <include refid="temporarywhere"></include>
+   </select>
+    <select id="outputMailCount" parameterType="hashMap" resultType="Integer">
+    <include refid="count"></include>
+    <include refid="searchto"></include>
+    and
+    <include refid="outputwhere"></include>  
+   </select>
+   <select id="saveMailCount" parameterType="hashMap" resultType="Integer">
+    <include refid="count"></include>
+    <include refid="searchall"></include>
+    and
+    <include refid="savewhere"></include>  
+   </select>
+    <select id="spamMailCount" resultType="Integer">
+   <include refid="count"></include>
+   <include refid="searchfrom"></include>
+   and
+   <include refid="spamwhere"></include>
+   </select>
+    <select id="deleteMailCount" resultType="Integer">
+ <include refid="count"></include>
+ <include refid="searchfrom"></include>
+   and
+ <include refid="deletewhere"></include>
+   </select>
+   <select id="allMailCount" resultType="Integer">
+   <include refid="count"></include>
+    <include refid="searchall"></include>
+   </select>
+<!--    sql로 묶어서 쿼리문을 던질 수 있다. -->
+   <sql id="searchfrom">
+      <choose>
+      <when test="selectfind.equals('all')">
+      WHERE (m_title like CONCAT('%',#{find},'%')
+      OR m_fromname like CONCAT('%',#{find},'%')
+      OR m_date like CONCAT('%',#{find},'%'))
+      </when>
+      <otherwise>
+       WHERE ${selectfind} like CONCAT('%',#{find},'%')
+      </otherwise>
+     </choose>
+   </sql>
+   <sql id="searchto">
+      <choose>
+      <when test="selectfind.equals('all')">
+      WHERE (m_title like CONCAT('%',#{find},'%')
+      OR m_toname like CONCAT('%',#{find},'%')
+      OR m_date like CONCAT('%',#{find},'%'))
+      </when>
+      <otherwise>
+       WHERE ${selectfind} like CONCAT('%',#{find},'%')
+      </otherwise>
+     </choose>
+   </sql>
+    <sql id="searchall">
+      <choose>
+      <when test="selectfind.equals('all')">
+      WHERE (m_title like CONCAT('%',#{find},'%')
+      OR m_toname like CONCAT('%',#{find},'%')
+      OR m_fromname like CONCAT('%',#{find},'%')
+      OR m_date like CONCAT('%',#{find},'%'))
+      </when>
+      <otherwise>
+       WHERE ${selectfind} like CONCAT('%',#{find},'%')
+      </otherwise>
+     </choose>
+   </sql>
+   <sql id="count">
+   select count(*) from emailbox
+   </sql>
+   <sql id="select">
+   select * from emailbox
+   </sql>
+   <sql id="spamwhere">
+    m_spam = 'Y'
+    and m_delete = 'N'
+    and m_temporary = 'N'
+    and m_recvdel ='N'
+    and (m_toemail = #{sessionemail}
+    OR m_cc like CONCAT('%',#{sessionemail},'%')) 
+   </sql>
+   <sql id="temporarywhere">
+    m_temporary = 'Y'
+    and m_delete = 'N'
+    and m_sentdel = 'N'
+    and m_fromemail = #{sessionemail}
+   </sql>
+   <sql id="deletewhere">
+    m_delete = 'Y'
+    and m_temporary = 'N'
+    and ((m_fromemail= #{sessionemail} and m_sentdel ='N')
+    OR
+    (m_toemail = #{sessionemail}
+    OR m_cc like CONCAT('%',#{sessionemail},'%')) and m_recvdel ='N')
+     
+   </sql>  
+   <sql id="savewhere">
+    m_save = 'Y'
+    and m_spam = 'N'
+    and m_delete = 'N'
+    and m_temporary = 'N'
+    and
+   ((m_fromemail= #{sessionemail} and m_sentdel ='N')
+    OR
+    (m_toemail = #{sessionemail}
+    OR m_cc like CONCAT('%',#{sessionemail},'%')) and m_recvdel ='N')
+   </sql>
+   <sql id="inputwhere">  
+    m_temporary = 'N'
+    and m_spam = 'N'
+    and m_delete = 'N'
+    and m_recvdel ='N'
+    and 
+    (m_toemail = #{sessionemail}
+    OR m_cc like CONCAT('%',#{sessionemail},'%')) 
+    </sql>
+    <sql id="outputwhere">
+    m_temporary = 'N'
+    and m_spam = 'N'
+    and m_sentdel = 'N'
+    and m_delete = 'N'
+    and m_fromemail = #{sessionemail}
+    </sql>
+  </mapper>

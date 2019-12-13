@@ -1,0 +1,11 @@
+	<th><i class="fas fa-exclamation"></i></th>
+
+<td class="text-middle">
+<c:choose>
+<c:when test="${emailboxs.m_save eq 'Y'}">
+<a href="#" onClick="importartOff('${emailboxs.m_seq}'); return false;"><i class="fas fa-star"></i></a>
+</c:when>
+<c:when test="${emailboxs.m_save eq 'N'}">
+<a href="#" onClick="importartOn('${emailboxs.m_seq}'); return false;" ><i class="far fa-star"></i></a>
+</c:when>																			</c:choose>
+</td>

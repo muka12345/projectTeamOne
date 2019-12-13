@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.navbar{
+   background: #d00808;
+}
+
+.nav-link{
+   color: white;
+   font-size: nomal;
+   font-weight: bold;
+   font-style:Sans-Serif;
+   word-spacing: 150;
+   border: medium;
+   border-color: white;
+   margin-left: 50px;
+   text-decoration: none; 
+}

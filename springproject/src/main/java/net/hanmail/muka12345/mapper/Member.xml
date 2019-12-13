@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="net.hanmail.muka12345.service.MemberDao">
+  <resultMap type="net.hanmail.muka12345.entities.Member" id="memberMap">
+  <id property="seq" column="seq"/>
+  <id property="name" column="name"/>
+  <id property="empno" column="empno"/>
+  <id property="password" column="password"/>
+  <id property="depart" column="depart"/>  
+  <id property="position" column="position"/>
+  <id property="level" column="level"/>
+  <id property="email" column="email"/>
+  <id property="addr" column="addr"/> 
+  <id property="addr1" column="addr1"/>
+  <id property="homeno" column="homeno"/>
+  <id property="phoneno" column="phoneno"/>
+  <id property="officeno" column="officeno"/>
+  <id property="imagepath" column="imagepath"/>
+  <id property="workcheck" column="workcheck"/>
+  <id property="offworkcheck" column="offworkcheck"/>
+  <id property="joinyyyy" column="joinyyyy"/>
+  <id property="joinmm" column="joinmm"/>
+
+</resultMap>
+  <select id="selectOne" parameterType="String" resultMap="memberMap">
+    <include refid="select"></include> where email=#{email}
+   </select>
+
+
+ <select id="addressList" parameterType="hashMap" resultMap="memberMap">
+     <include refid="select"></include>
+    <include refid="searchaddress"></include>
+    order by
+    seq desc
+    limit 
+    #{startrow} , #{endrow}
+   </select>
+   <select id="addressCount" parameterType="hashMap" resultType="Integer">
+   <include refid="count"></include>
+   <include refid="searchaddress"></include>
+   </select>
+
+
+ <sql id="searchaddress">
+      <choose>
+      <when test="selectfind == 'all'">
+      WHERE (depart like CONCAT('%',#{find},'%')
+      OR name like CONCAT('%',#{find},'%')
+      OR position like CONCAT('%',#{find},'%')
+      OR officeno like CONCAT('%',#{find},'%')
+      OR phoneno like CONCAT('%',#{find},'%')
+      OR email like CONCAT('%',#{find},'%'))
+      </when>
+      <otherwise>
+       WHERE ${selectfind} like CONCAT('%',#{find},'%')
+      </otherwise>
+     </choose>
+   </sql>
+      <sql id="select">
+   select * from member
+   </sql>
+      <sql id="count">
+   select count(*) from member
+   </sql>
+</mapper>
