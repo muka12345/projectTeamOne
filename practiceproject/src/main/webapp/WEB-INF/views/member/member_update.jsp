@@ -10,7 +10,7 @@
 	<div style="margin-bottom: 30px; text-align: center;">
 		<h2>정보수정</h2>
 	</div>
-	<form action="myInfoSave" method="post" enctype="multipart/form-data"
+	<form action="memberInfoSave" method="post" enctype="multipart/form-data"
 		data-parsley-validate="true">
 		<div class="container">
 			<div class="row">

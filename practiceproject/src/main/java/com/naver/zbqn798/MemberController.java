@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.naver.zbqn798.entities.Member;
@@ -34,7 +31,7 @@ public class MemberController {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	// 비밀번호변경 저장
-	@RequestMapping(value = "/passwordChange", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberpassChange", method = RequestMethod.POST)
 	public String passwordChange(Model model, @ModelAttribute Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		String passEncode = passwordEncoder.encode(member.getPassword());
@@ -48,7 +45,7 @@ public class MemberController {
 	}
 
 	// 비밀번호변경 진입
-	@RequestMapping(value = "/passwordChangeForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberpassForm", method = RequestMethod.GET)
 	public String passwordChangeForm(Model model) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 
@@ -56,7 +53,7 @@ public class MemberController {
 	}
 
 	// 개인정보조회(사원용)진입,드롭박스에 있는것
-	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
 	public String myInfo(Model model, HttpSession session) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		Member members = dao.selectMember(session.getAttribute("sessionempno").toString());
@@ -66,7 +63,7 @@ public class MemberController {
 	}
 
 	// 개인정보조회(사원용)저장,드롭박스에 있는것
-	@RequestMapping(value = "/myInfoSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberInfoSave", method = RequestMethod.POST)
 	public String myInfoSave(Model model, @ModelAttribute Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		int result = dao.updateMyinfo(member);
@@ -78,35 +75,20 @@ public class MemberController {
 	}
 
 	// 개인정보조회(인사과용)진입
-	@RequestMapping(value = "/MemberInsertper", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberInsertper", method = RequestMethod.GET)
 	public String MemberInsertper(Model model) {
 
 		return "member/member_insert_personnel";
 	}
 
 	// 사원관리테이블(인사과용)진입
-	@RequestMapping(value = "/MemberDatatable", method = RequestMethod.GET)
+	@RequestMapping(value = "/memberDatatable", method = RequestMethod.GET)
 	public String MemberDatatable(Model model, @ModelAttribute Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		ArrayList<Member> members = dao.selectAll();
 		model.addAttribute("members", members);
 
 		return "member/member_datatable";
-	}
-
-	// 퇴근체크하기
-	@RequestMapping(value = "/offworkCheck", method = RequestMethod.POST)
-	public String offworkCheckForm(Model model, @ModelAttribute Member member) {
-		System.out.println("------------>>>>11111");
-		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		int result = dao.offworkCheck(member);
-		System.out.println(result);
-		if (result > 0) {
-			return "result_page";
-		} else {
-			model.addAttribute("체크실패", "다시시도하여주세요");
-			return "index";
-		}
 	}
 
 	// 사원관리table 검색버튼
@@ -165,48 +147,6 @@ public class MemberController {
 		return "result_page";
 	}
 
-	// 사원번호 생성폼
-	@RequestMapping(value = "/empnoForm", method = RequestMethod.GET)
-	public String empnoForm(Model model) {
-
-		return "empno/empno_form";
-	}
-
-	// 사원번호생성 컨트롤
-	@RequestMapping(value = "/createEmpno", method = RequestMethod.POST)
-	public String createEmpno(Model model, @ModelAttribute Member member) {
-		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		int result = 0;
-		int yyyy = 0;
-		int mm = 0;
-		int number = dao.selectseq(member);
-		int resultNum = yyyy + mm + number;
-		model.addAttribute("resultNums", resultNum);
-
-		return "member/test";
-	}
-
-	// 아이피 주소 가져오기
-	@RequestMapping(value = "/getIP", method = RequestMethod.POST)
-	public String getIP(Model model) {
-		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
-				.getRequest();
-		String ip = req.getHeader("X-FORWARDED-FOR");
-		if (ip == null)
-			ip = req.getRemoteAddr();
-		model.addAttribute("clientIp", ip);
-
-		return "member/member_insert_personnel";
-	}
-
-	// 비밀번호 찾기
-	@RequestMapping(value = "/findPassword", method = RequestMethod.GET)
-	public String findPassword(Model model) {
-		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-
-		return "login/password_update";
-	}
-
 	// 중복검사
 	@ResponseBody
 	@RequestMapping(value = "/memberConfirm", method = RequestMethod.POST)
@@ -221,7 +161,7 @@ public class MemberController {
 	}
 
 	// 사원관리 테이블에서 수정버튼 ajax url
-	@RequestMapping(value = "/tableModify", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberModify", method = RequestMethod.POST)
 	@ResponseBody
 	public String tableModify(@ModelAttribute Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -230,7 +170,7 @@ public class MemberController {
 	}
 
 	// 사원관리 테이블에서 삭제버튼 ajax url
-	@RequestMapping(value = "/tablerowDelete", method = RequestMethod.POST)
+	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberDeleteAjax(@RequestParam String empno) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);

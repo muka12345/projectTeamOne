@@ -165,7 +165,7 @@ $(document)
 																			empno : empno
 																		},
 																		datatype : 'json',
-																		url : 'tablerowDelete',
+																		url : 'memberDelete',
 																		success : function(
 																				data) {
 																			currentRow
@@ -253,7 +253,7 @@ $(document)
 																			position : position
 																		},
 																		datatype : 'json',
-																		url : 'tableModify',
+																		url : 'memberModify',
 																		success : function(
 																				data) {
 																			var msg = "수정 되지않았습니다!";
