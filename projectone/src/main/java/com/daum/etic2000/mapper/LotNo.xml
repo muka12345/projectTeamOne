@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daum.etic2000.service.LotNoDao">
+	<resultMap type="com.daum.etic2000.entities.Lotno" id="LotNoMap">
+		<id property="lotno" column="lotno" />
+		<id property="cuscode" column="cuscode" />
+		<id property="productcode" column="productcode" />
+		<id property="yy" column="yy" />
+		<id property="mm" column="mm" />
+		<id property="dd" column="dd" />
+		<id property="time" column="time" />
+		<id property="orderno" column="orderno" />
+		<id property="modelcode" column="modelcode" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Customer" id="CustomerMap">
+		<id property="cuscode" column="cuscode" />
+		<id property="cusname" column="cusname" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Product" id="ProductMap">
+		<id property="productcode" column="productcode" />
+		<id property="productname" column="productname" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Model" id="ModelMap">
+		<id property="modelcode" column="modelcode" />
+		<id property="modelname" column="modelname" />
+		<id property="cuscode" column="cuscode" />
+		<id property="productcode" column="productcode" />
+		<id property="quantity" column="quantity" />
+		<id property="amount" column="amount" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Facility" id="facilityMap">
+		<id property="facilitycode" column="facilitycode" />
+		<id property="facilityname" column="facilityname" />
+		<id property="partcode" column="partcode" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Memberinsert" id="memberinsertMap">
+		<id property="membercode" column="membercode" />
+		<id property="codedate" column="codedate" />
+		<id property="codeno" column="codeno" />
+		<id property="membername" column="membername" />
+		<id property="position" column="position" />
+		<id property="regular" column="regular" />
+		<id property="memlevel" column="memlevel" />
+		<id property="pcode" column="pcode" />
+		<id property="ccode" column="ccode" />
+		<id property="fcode" column="fcode" />
+		<id property="regdate" column="regdate" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Defect" id="defectMap">
+		<id property="defectcode" column="defectcode" />
+		<id property="defectname" column="defectname" />
+		<id property="fcode" column="fcode" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.Process1" id="processMap">
+		<id property="lotno" column="lotno" />
+		<id property="facilityname" column="facilityname" />
+		<id property="membername" column="membername" />
+		<id property="outtime" column="outtime" />
+		<id property="amount" column="amount" />
+		<id property="input" column="input" />
+		<id property="output" column="output" />
+		<id property="processlevel" column="processlevel" />
+		<id property="defect1" column="defect1" />
+		<id property="defectqty1" column="defectqty1" />
+		<id property="defect2" column="defect2" />
+		<id property="defectqty2" column="defectqty2" />
+		<id property="defect3" column="defect3" />
+		<id property="defectqty3" column="defectqty3" />
+		<id property="defect4" column="defect4" />
+		<id property="defectqty4" column="defectqty4" />
+		<id property="defect5" column="defect5" />
+		<id property="defectqty5" column="defectqty5" />
+		<id property="defectsum" column="defectsum" />
+	</resultMap>
+	<resultMap type="com.daum.etic2000.entities.LotAll" id="LotlistMap">
+		<collection property="lotno" resultMap="LotNoMap"></collection>
+		<collection property="customer" resultMap="CustomerMap"></collection>
+		<collection property="product" resultMap="ProductMap"></collection>
+		<collection property="model" resultMap="ModelMap"></collection>
+		<collection property="facility" resultMap="facilityMap"></collection>
+		<collection property="memberinsert" resultMap="memberinsertMap"></collection>
+		<collection property="defect" resultMap="defectMap"></collection>
+	</resultMap>
+	<insert id="createLotNo" parameterType="HashMap">
+		insert into lotno
+		(cuscode,productcode,yy,mm,dd,time,orderno,lotno,modelcode)
+		values (
+		(select cuscode from
+		model as B
+		where B.modelcode = #{modelcode}),
+		(select productcode from model as B where
+		B.modelcode =
+		#{modelcode}),
+		(select date_format(now(),'%y')),
+		(select
+		date_format(now(),'%m')),
+		(select
+		date_format(now(),'%d')),
+		(select
+		date_format(now(),'%T')),
+		(select ifnull(max(orderno)+1,1) from
+		lotno as A),
+		concat(cuscode,productcode,YY,MM,DD,orderno),
+		#{modelcode})
+	</insert>
+	<select id="lotNoList" resultMap="LotlistMap">
+		select
+		A.lotno,A.cuscode,A.productcode,A.yy,A.mm,A.dd,A.orderno,A.modelcode,A.time,B.cusname,
+		C.productname,D.modelname,D.quantity
+		from lotno as A, customer as B, product as C, model
+		as D
+		where A.cuscode = B.cuscode and
+		a.productcode = C.productcode and A.modelcode =
+		D.modelcode
+	</select>
+	<delete id="lotnoDelete" parameterType="String">
+		delete from lotno where lotno=#{lotno}
+	</delete>
+	<select id="lotNoSelct" resultMap="LotNoMap">
+		select * from lotno
+	</select>
+	<select id="facilitySelct" resultMap="facilityMap">
+		select * from facility
+	</select>
+	<select id="memberSelct" resultMap="memberinsertMap">
+		select * from memberinsert
+	</select>
+	<select id="amountSelct" resultMap="LotlistMap">
+		select A.amount,B.modelcode,B.lotno,C.lotno
+		from model as A, lotno as B, process1 as C
+		where A.modelcode = B.modelcode and B.lotno =
+		C.lotno;
+	</select>
+	<select id="defectSelct" resultMap="defectMap">
+		select * from defect
+	</select>
+	<update id="lotNoInsert">
+		update process1 set
+		facilityname = #{facilityname},
+		membername = #{membername},
+		outtime = (select date_format(NOW(),'%Y.%m.%d %T')),
+		input = #{input},
+		processlevel=(select facilitycode from facility where facilityname = #{facilityname}),
+		defect1 = #{defect1},
+		defectqty1 = #{defectqty1},
+		defect2 = #{defect2},
+		defectqty2 = #{defectqty2},
+		defect3 = #{defect3},
+		defectqty3 = #{defectqty3},
+		defect4 = #{defect4},
+		defectqty4 = #{defectqty4},
+		defect5 = #{defect5},
+		defectqty5 = #{defectqty5},
+		defectsum = defectqty1+defectqty2+defectqty3+defectqty4+defectqty5,
+		output = input-defectsum
+		where lotno = #{lotno}
+	</update>
+	<select id="selectProcess" resultMap="processMap">
+		select * from process1 where lotno = #{lotno}
+	</select>
+	
+</mapper>
