@@ -63,9 +63,7 @@
 								</a> <a class="dropdown-item" href=passwordChangeForm><i
 									class="fas fa-sign-out-alt" style="color: #4285F4"></i>비밀번호 변경</a>
 								<a class="dropdown-item" href="Logout"><i
-									class="fas fa-sign-out-alt" style="color: #4285F4"></i> 로그아웃</a> <a
-									class="dropdown-item" href="workCheckForm"><i
-									class="fas fa-sign-out-alt" style="color: #4285F4"></i>출퇴근체크</a> <a
+									class="fas fa-sign-out-alt" style="color: #4285F4"></i> 로그아웃</a>  <a
 									class="dropdown-item" href="payCheck"><i
 									class="fas fa-sign-out-alt" style="color: #4285F4"></i>급여명세서 조회</a>
 							</div>

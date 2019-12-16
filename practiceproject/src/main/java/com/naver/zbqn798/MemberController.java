@@ -32,7 +32,7 @@ public class MemberController {
 	Member data;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+
 	// 비밀번호변경 저장
 	@RequestMapping(value = "/passwordChange", method = RequestMethod.POST)
 	public String passwordChange(Model model, @ModelAttribute Member member) {
@@ -108,6 +108,7 @@ public class MemberController {
 			return "index";
 		}
 	}
+
 	// 사원관리table 검색버튼
 	@RequestMapping(value = "/memberSelect", method = RequestMethod.POST)
 	public String memberSelect(@RequestParam String find, Model model, @ModelAttribute Member member) {
@@ -164,7 +165,7 @@ public class MemberController {
 		return "result_page";
 	}
 
-	//사원번호 생성폼
+	// 사원번호 생성폼
 	@RequestMapping(value = "/empnoForm", method = RequestMethod.GET)
 	public String empnoForm(Model model) {
 

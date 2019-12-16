@@ -140,11 +140,14 @@ $(document)
 						$('#work_Check_Form').attr('action', "offworkCheck");
 						$('#work_Check_Form').submit();
 					});
+
 					$('button[name=btndelete]')
 							.on(
 									'click',
 									function() {
 										var currentRow = $(this).closest("tr");
+										var empno = currentRow.find("td:eq(2)")
+												.text();
 										$('.modal-body').text("삭제 하시겠습니까?");
 										$('#commonuse').text("확인");
 										$('#commonmodal').modal('show');
@@ -222,13 +225,13 @@ $(document)
 									'click',
 									function() {
 										var currentRow = $(this).closest("tr");
-										var empno = currentRow.find("td:eq(1)")
+										var empno = currentRow.find("td:eq(2)")
 												.text();
 										var depart = currentRow.find(
-												"td:eq(2) input[type='text']")
+												"td:eq(3) input[type='text']")
 												.val();
 										var position = currentRow.find(
-												"td:eq(3) input[type='text']")
+												"td:eq(4) input[type='text']")
 												.val();
 
 										$('.modal-body').text("수정 하시겠습니까?");
