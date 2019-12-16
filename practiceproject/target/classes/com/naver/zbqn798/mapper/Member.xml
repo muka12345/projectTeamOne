@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naver.zbqn798.service.MemberDao">
+	<resultMap type="com.naver.zbqn798.entities.Member"
+		id="memberMap">
+		<id property="seq" column="seq" />
+		<id property="name" column="name" />
+		<id property="empno" column="empno" />
+		<id property="password" column="password" />
+		<id property="depart" column="depart" />
+		<id property="position" column="position" />
+		<id property="level" column="level" />
+		<id property="email" column="email" />
+		<id property="addr" column="addr" />
+		<id property="addr1" column="addr1" />
+		<id property="homeno" column="homeno" />
+		<id property="phoneno" column="phoneno" />
+		<id property="officeno" column="officeno" />
+		<id property="imagepath" column="imagepath" />
+		<id property="joinyyyy" column="joinyyyy" />
+		<id property="joinmm" column="joinmm" />
+	</resultMap>
+
+	<insert id="insertRow" parameterType="hashMap">
+		insert into member(
+		seq,name,empno,password,depart,position,
+		level,email,addr,addr1,homeno,phoneno,officeno,
+		imagepath,joinyyyy,joinmm
+		)values(
+		(select ifnull(Max(seq)+1,1) FROM member memberalias_seq),
+		#{name,jdbcType=VARCHAR},#{empno,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{depart,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},
+		#{level,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},
+		#{addr,jdbcType=VARCHAR},#{addr1,jdbcType=VARCHAR},
+		#{homeno,jdbcType=VARCHAR},
+		#{phoneno,jdbcType=VARCHAR},#{officeno,jdbcType=VARCHAR},
+		#{imagepath,jdbcType=VARCHAR},#{joinyyyy,jdbcType=VARCHAR},
+		#{joinmm,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="updateRow" parameterType="hashMap">
+		update member set
+		password=#{password,jdbcType=VARCHAR} where empno=#{empno}
+	</update>
+
+
+	<update id="updateAll" parameterType="hashMap">
+		update member set
+		#{name,jdbcType=VARCHAR},#{empno,jdbcType=VARCHAR},
+		#{depart,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},
+		#{level,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},
+		#{addr,jdbcType=VARCHAR},#{addr1,jdbcType=VARCHAR},
+		#{homeno,jdbcType=VARCHAR},
+		#{phoneno,jdbcType=VARCHAR},#{officeno,jdbcType=VARCHAR},
+		#{imagepath,jdbcType=VARCHAR})
+		where empno=#{empno}
+	</update>
+
+	<select id="selectPageList" parameterType="String"
+		resultMap="memberMap">
+		select * from member where
+		empno like CONCAT('%',#{find},'%')
+		or
+		name like CONCAT('%',#{find},'%')
+		order by empno asc
+	</select>
+
+	<update id="updateMyinfo" parameterType="hashmap">
+		update member set
+		email=#{email,jdbcType=VARCHAR},
+		addr=#{addr,jdbcType=VARCHAR},
+		homeno=#{homeno,jdbcType=VARCHAR},
+		phoneno=#{phoneno,jdbcType=VARCHAR},
+		officeno=#{officeno,jdbcType=VARCHAR}
+		where empno=#{empno}
+	</update>
+
+	<select id="selectMember" parameterType="String"
+		resultMap="memberMap">
+		select * from member where empno=#{empno}
+	</select>
+
+	<select id="confirmnumber" parameterType="String"
+		resultType="int">
+		select count(*) from member where empno=#{empno}
+	</select>
+
+	<select id="selectOne" parameterType="String"
+		resultMap="memberMap">
+		select * from member where empno=#{empno}
+	</select>
+
+	<select id="selectseq" parameterType="int">
+		select seq from member
+		where empno=#{empno}
+	</select>
+
+	<select id="selectAll" parameterType="hashMap"
+		resultMap="memberMap">
+		select * from member
+	</select>
+
+	<update id="ChangeRow" parameterType="hashMap">
+		update member set
+		position=#{position},depart=#{depart} where empno=#{empno}
+	</update>
+
+	<delete id="deleteRow" parameterType="String">
+		delete from member where
+		empno=#{empno}
+	</delete>
+
+	<update id="workCheck" parameterType="hashMap">
+		update member set
+		workcheck='y' where empno=#{empno}
+	</update>
+
+	<update id="offworkCheck" parameterType="hashMap">
+		update member set
+		offworkcheck='y' where empno=#{empno}
+	</update>
+
+	<select id="Creatempno" parameterType="hashMap" resultMap="memberMap">
+		select CONCAT(joinyyyy,joinmm,seq)from member
+	</select>
+
+</mapper>

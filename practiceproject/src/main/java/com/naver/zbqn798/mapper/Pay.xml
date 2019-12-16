@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naver.zbqn798.service.PayDao">
+	<resultMap type="com.naver.zbqn798.entities.Pay" id="payMap">
+		<id property="name" column="name"/>
+		<id property="empno" column="empno"/>
+		<id property="yyyy" column="yyyy"/>
+		<id property="mm" column="mm"/>
+		<id property="dd" column="dd"/>
+		<id property="depart" column="depart"/>
+		<id property="position" column="position"/>
+		<id property="basicpay" column="basicpay"/>
+		<id property="fullattendpay" column="fullattendpay"/>
+		<id property="incentive" column="incentive"/>
+		<id property="teampay" column="teampay"/>
+		<id property="ricepay" column="ricepay"/>
+		<id property="supportpay" column="supportpay"/>
+		<id property="accurerest" column="accurerest"/>
+		<id property="monthrest" column="monthrest"/>
+		<id property="moverest" column="moverest"/>
+	</resultMap>
+
+	<insert id="insertRow" parameterType="hashMap">
+		insert into pay(
+		name,empno,yyyy,mm,dd,depart,position,basicpay,fullattendpay,incentive,teampay,ricepay,supportpay,
+		accurerest,monthrest,moverest
+		)values(
+		#{name,jdbcType=VARCHAR},#{empno,jdbcType=VARCHAR},#{yyyy,jdbcType=VARCHAR},
+		#{mm,jdbcType=VARCHAR},#{dd,jdbcType=VARCHAR},
+		#{depart,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR},
+		#{basicpay,jdbcType=VARCHAR},#{fullattendpay,jdbcType=VARCHAR},
+		#{incentive,jdbcType=VARCHAR},#{teampay,jdbcType=VARCHAR},
+		#{ricepay,jdbcType=VARCHAR},#{supportpay,jdbcType=VARCHAR},
+		#{accurerest,jdbcType=VARCHAR},#{monthrest,jdbcType=VARCHAR},
+		#{moverest,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="selectAll" parameterType="hashMap"
+		resultMap="payMap">
+		select * from pay
+	</select>
+
+	<select id="selectPageList" parameterType="String"
+		resultMap="payMap">
+		select * from pay where
+		empno like CONCAT('%',#{grope},'%') or
+		name like CONCAT('%',#{grope},'%')or
+		depart like CONCAT('%',#{grope},'%')or
+		position like CONCAT('%',#{grope},'%')
+		order by empno asc
+	</select>
+
+	<select id="selectPay" parameterType="String" resultMap="payMap">
+		select *
+		from pay where empno=#{empno}
+	</select>
+
+	<update id="modifyRow" parameterType="hashMap">
+		update pay set
+		fullattendpay=#{fullattendpay,jdbcType=VARCHAR},
+		teampay=#{teampay,jdbcType=VARCHAR},
+		ricepay=#{ricepay,jdbcType=VARCHAR},
+		supportpay=#{supportpay,jdbcType=VARCHAR},
+		accurerest=#{accurerest,jdbcType=VARCHAR},
+		monthrest=#{monthrest,jdbcType=VARCHAR},
+		moverest=#{moverest,jdbcType=VARCHAR}
+		where empno=#{empno}
+	</update>
+	
+	<delete id="deleteRow" parameterType="hashMap">
+		delete from pay where empno=#{empno}
+	</delete>
+
+</mapper>

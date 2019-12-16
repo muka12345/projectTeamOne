@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\webapp",
+    "\\src\\main\\webapp\\WEB-INF",
+    "\\src\\main\\webapp\\WEB-INF\\spring\\appServlet",
+    "\\src\\main\\webapp\\WEB-INF\\views",
+    "\\src\\main\\webapp\\WEB-INF\\views\\layout",
+    "\\src\\main\\webapp\\WEB-INF\\views\\login",
+    "\\src\\main\\webapp\\WEB-INF\\views\\member",
+    "\\src\\main\\webapp\\WEB-INF\\views\\modal"
+  ],
+  "PreviewInSolutionExplorer": false
+}
