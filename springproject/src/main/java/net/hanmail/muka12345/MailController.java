@@ -1120,12 +1120,4 @@ public class MailController {
 		return member;
 	}
 
-	@RequestMapping(value = "/memberToEmail", method = RequestMethod.POST)
-	@ResponseBody
-	public ArrayList<Member> memberToEmail() {
-		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		ArrayList<Member> member = dao.listAll2();
-		return member;
-	}
-
 }

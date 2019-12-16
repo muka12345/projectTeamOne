@@ -16,6 +16,4 @@ public interface MemberDao {
 
 	ArrayList<Member> selectemail();
 
-	ArrayList<Member> listAll2();
-
 }
