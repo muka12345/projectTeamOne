@@ -51,7 +51,7 @@
 							<li class="nav-item"><a 
 							href="mailboxDeleteForm">삭제메일함</a></li>
 					</ul></li>
-				<c:if test="${sessionmemlevel ge 3}">
+				<c:if test="${sessionmemlevel le 3}">
 							<li><a href="mailboxAllForm"><span class="fa-stack fa-lg pull-left"><i
 							class="fa fa-youtube-play fa-stack-1x "></i></span>전체메일함</a></li>
 						</c:if>

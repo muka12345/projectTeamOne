@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 
 <head>
 <meta charset="UTF-8">
@@ -35,8 +24,8 @@
       <ul class="navbar-nav">
       
          <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
+         <li class="nav-item"><a class="nav-link" href="memberInfo" style="color: white;">사원테이블(인사부)</a></li>
+         <li class="nav-item"><a class="nav-link" href="memberInsertper" style="color: white;">개인정보입력(인사부)</a></li>
          <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
          <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
          <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
@@ -46,18 +35,26 @@
      
 						<li class="nav-item">
 							<c:choose>
-					<c:when test="${sessionemail == null }">
-						<a href="loginForm" class="btn btn-danger pull-right"><i class="fab fa-invision"></i> Login</a>
+					<c:when test="${sessionempno == null }">
+						<a href="LoginForm" class="btn btn-basic pull-light"><i
+							class="fab fa-invision"></i> Login</a>
 					</c:when>
 					<c:otherwise>
 						<div class="dropdown">
-							<button type="button" class="btn btn-info dropdown-toggle"
+							<button type="button" class="btn btn-outline-primary dropdown-toggle"
 								data-toggle="dropdown">
-								<img src="${sessionimage}" width="20px" height="20px" class="img-circle"> 
-								${sessionname}
+								<img src="${sessionimage}" width="20px" height="20px"
+									class="img-circle"> ${sessionname}
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="logout"><i class="fas fa-sign-out-alt" style="color:#4285F4"></i> 로그아웃</a>
+								<a class="dropdown-item" href="memberInfo"> <i
+									class="fas fa-info" style="color: #4285F4"></i> 내정보수정
+								</a> <a class="dropdown-item" href=memberpassForm><i
+									class="fas fa-sign-out-alt" style="color: #4285F4"></i>비밀번호 변경</a>
+								<a class="dropdown-item" href="Logout"><i
+									class="fas fa-sign-out-alt" style="color: #4285F4"></i> 로그아웃</a>  <a
+									class="dropdown-item" href="payCheck"><i
+									class="fas fa-sign-out-alt" style="color: #4285F4"></i>급여명세서 조회</a>
 							</div>
 						</div>
 					</c:otherwise>

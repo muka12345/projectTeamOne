@@ -16,36 +16,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
+		
 		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
+		
+		model.addAttribute("serverTime", formattedDate );
+		
 		return "home";
 	}
-
+	@RequestMapping(value = "/backtoHome", method = RequestMethod.GET)
+	public String backtoHome(Model model) {
+	
+		return"home";
+	}
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() {
-
-		return "home";
+	public String index(Model model) {
+		return"index";
 	}
-
-	@RequestMapping(value = "/returnResultPage", method = RequestMethod.POST)
-	public String returnResultPage() {
-		return "mail/mail_mailbox_result";
-	}
-
-//	 [출처] 스프링 템플릿 엔진|작성자 자바대장
-
+	
 }

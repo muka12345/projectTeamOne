@@ -30,23 +30,23 @@
         <li class="active">
           <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>테스트</a>
           <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-            <li><a href="#">link1</a></li>
-            <li><a href="#">link2</a></li>
+            <li><a href="memberInsertper">개인정보입력(인사부)</a></li>
+            <li><a href="memberDatatable">사원테이블(인사부)</a></li>
           </ul>
         </li>
         <li>
           <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span> Shortcut</a>
           <ul class="nav-pills nav-stacked" style="list-style-type:none;">
             <li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>link1</a></li>
-            <li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>link2</a></li>
+            <li><a href="memberInfo"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>사원테이블(인사부)</a></li>
 
           </ul>
         </li>
         <li>
-          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Overview</a>
+          <a href="payCheckForm"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>급여입력(인사부)</a>
         </li>
         <li>
-          <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Events</a>
+          <a href="payDatatable"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>급여테이블(인사부)</a>
         </li>
         <li>
           <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>About</a>

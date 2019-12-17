@@ -1,138 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <html>
-
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Business Frontpage - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  
- <link href="resources/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
-
-  <!-- Custom styles for this template -->
-  <link href="resources/css/business-frontpage.css"rel="stylesheet"  type="text/css">
+<title>Home</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato"
+	rel="stylesheet" type="text/css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
-<P>  The time on the server is ${serverTime}. </P>
+	<!-- First Container -->
+	<div class="jumbotron text-center">
+		<h3 style="">프로젝트명</h3>
+		<h4 class="margin">PROJECT TEAMONE</h4>
+		<p>Lorem Ipsum is simply dummy text of the printing and
+			typesetting industry. Lorem Ipsum has been the industry's standard
+			dummy text ever since the 1500s, when an unknown printer took a
+			galley of type and scrambled it to make a type specimen book. make a
+			type specimen book. It has survived not only five centuries, but also
+			the leap into electronic typesetting, remaining essentially
+			unchanged. It was popularised in the 1960s with the release of
+			Letraset sheets containing</p>
+	</div>
 
- 
+	<!-- Second Container -->
+	<div class="container-fluid bg-2 text-center" id="secondiv">
+		<h3 class="margin">프로젝트 소개</h3>
+		<div>
+			<h5>"자체 이메일링 시스템으로 보다 효율적으로 인력관리를 할 수 있는 프로그램"</h5>
 
-  <!-- Navigation -->
- 
-  <!-- Header -->
-  <header class="bg-primary py-5 mb-5">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-lg-12">
-          <h1 class="display-4 text-white mt-5 mb-2">Business Name or Tagline</h1>
-          <p class="lead mb-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non possimus ab labore provident mollitia. Id assumenda voluptate earum corporis facere quibusdam quisquam iste ipsa cumque unde nisi, totam quas ipsam.</p>
-        </div>
-      </div>
-    </div>
-  </header>
+			<p>Lorem Ipsum is simply dummy text of the printing and
+				typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book. It has
+				survived not only five centuries, but also the leap into electronic
+				typesetting, remaining essentially unchanged. It was popularised in
+				the 1960s with the release of Letraset sheets containing Lorem Ipsum
+				passages, and more recently with desktop publishing software like
+				Aldus PageMaker including versions of Lorem Ipsum.</p>
 
-  <!-- Page Content -->
-  <div class="container">
+			<p>
+				곽빛남:팀 책임자 및 이메일 관리 서비스 구현<br> 이다솔:인사관리서비스 구현<br>
+				이종호:생산공정사원 관리 서비스구현
+			</p>
+		</div>
+	</div>
 
-    <div class="row">
-      <div class="col-md-8 mb-5">
-        <h2>What We Do</h2>
-        <hr>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
-        <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
-      </div>
-      <div class="col-md-4 mb-5">
-        <h2>Contact Us</h2>
-        <hr>
-        <address>
-          <strong>Start Bootstrap</strong>
-          <br>3481 Melrose Place
-          <br>Beverly Hills, CA 90210
-          <br>
-        </address>
-        <address>
-          <abbr title="Phone">P:</abbr>
-          (123) 456-7890
-          <br>
-          <abbr title="Email">E:</abbr>
-          <a href="mailto:#">name@example.com</a>
-        </address>
-      </div>
-    </div>
-    <!-- /.row -->
+	<!-- Third Container -->
+	<div class="container-fluid bg-3 text-center" id="thirdiv">
+		<h3 class="margin" style="margin-top: 30px">바로가기 Tab</h3>
+		<br>
+		<div class="row">
+			<div class="col-sm-4">
+				<h5>이메일 서비스</h5>
+				<a href="#"><h5>GO!</h5> </a> <img src="resources/images/email.png"
+					class="img-responsive margin" style="width: 100%; height: 60%"
+					alt="Image">
+			</div>
+			<div class="col-sm-4">
+				<h5>인사관리 서비스</h5>
+				<a href="#"><h5>GO!</h5></a> <img
+					src="resources/images/personnel.png" class="img-responsive margin"
+					style="width: 100%; height: 60%" alt="Image">
+			</div>
+			<div class="col-sm-4">
+				<h5>생산관리 서비스</h5>
+				<a href="#"><h5>GO!</h5></a> <img src="resources/images/office.png"
+					class="img-responsive margin" style="width: 100%; height: 60%"
+					alt="Image">
+			</div>
+		</div>
+	</div>
 
-    <div class="row">
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.row -->
+	<!-- Fourth Container -->
+	<div class="container-fluid bg-2 text-center" id="fourthdiv">
+		<h3 class="margin">프로젝트를 마치며 얻은점</h3>
+		<div>
+		<p>Lorem Ipsum is simply dummy text of the printing and
+				typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book. It has
+				survived not only five centuries, but also the leap into electronic
+				typesetting, remaining essentially unchanged. It was popularised in
+				the 1960s with the release of Letraset sheets containing Lorem Ipsum
+				passages, and more recently with desktop publishing software like
+				Aldus PageMaker including versions of Lorem Ipsum.</p>
+		</div>
+		<!-- Image of location/map -->
+		<img src="resources/images/teamwork.png"
+			class="w3-image w3-greyscale-min" style="width: 50%">
 
-  </div>
-  <!-- /.container -->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="./resources/vendor/jquery/jquery.min.js"></script>
-  <script src="./resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
+	</div>
+
+	<!-- Footer -->
+	<footer class="container-fluid bg-4 text-center" id="footer">
+		<h6>개발자 정보</h6>
+		<p>
+		이름:### 이메일 주소 아이티스쿨:a@a.com 전화번호:010-0000-0000 주소:대전시 서구 용문동//
+		이름:### 이메일 주소 아이티스쿨:a@a.com 전화번호:010-0000-0000 주소:대전시 서구 용문동//
+		이름:### 이메일 주소 아이티스쿨:a@a.com 전화번호:010-0000-0000 주소:대전시 서구 용문동//
+		컨텍을 원하시면 주소 위의 주소로 연락하여 주세요
+		</p>
+	</footer>
 </body>
-
-
 </html>
-
-
-
