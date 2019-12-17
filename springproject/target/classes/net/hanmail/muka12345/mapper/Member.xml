@@ -127,6 +127,10 @@
 	<select id="Creatempno" parameterType="hashMap" resultMap="memberMap">
 		select CONCAT(joinyyyy,joinmm,seq)from member
 	</select>
+	<select id="selectemail" parameterType="String"
+		resultMap="memberMap">
+		select * from member where email=#{email}
+	</select>
 	<select id="addressList" parameterType="hashMap" resultMap="memberMap">
      <include refid="select"></include>
     <include refid="searchaddress"></include>

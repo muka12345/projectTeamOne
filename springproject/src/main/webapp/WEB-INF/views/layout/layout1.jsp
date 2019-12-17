@@ -19,6 +19,9 @@
 <meta charset="UTF-8">
 
 <title>memberlayout1</title>
+<!--google font (한글)  -->
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="resources/css/mycss.css" />
 <link href="resources/css/layoutheader.css" rel="stylesheet"  type="text/css">
@@ -62,7 +65,7 @@
 	<script src="resources/js/mailbox.js"></script>
 	<script src="resources/js/member.js"></script>
 	<script src="resources/js/checkbox.js"></script>
-
+<script src="https://kit.fontawesome.com/6d17a07b11.js"></script>
 
 </body>
 </html>

@@ -13,27 +13,20 @@
 
    <!--상단 nav바 -->
    <nav class="navbar navbar-expand-sm sticky-top">
-   <a class="navbar-brand" href="index"> <img src="resources/images/itschool_logo.png" alt="Logo"
+   <a class="navbar-brand" href="backtoHome"> <img src="resources/images/itschool_logo.png" alt="Logo"
       style="width: 130px;">
    </a>
-    <div class="navbar-header fixed-brand">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
-        <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-      </button>
-    </div>
+   
       <ul class="navbar-nav">
-      
          <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="memberInfo" style="color: white;">사원테이블(인사부)</a></li>
-         <li class="nav-item"><a class="nav-link" href="memberInsertper" style="color: white;">개인정보입력(인사부)</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="mailboxInputForm" style="color: white;">전자메일</a></li>
-         <li class="nav-item"><a class="nav-link" href="testView" style="color: white;">테스트</a></li>
-     
-						<li class="nav-item">
+         <li class="nav-item"><a class="nav-link" href="memberInfo" style="color: white;">회원관리</a></li>
+         <li class="nav-item"><a class="nav-link" href="mesIndex" style="color: white;">생산관리</a></li>
+         <li class="nav-item"><a class="nav-link" href="#" style="color: white;">일정관리</a></li>
+         <li class="nav-item"><a class="nav-link" href="#" style="color: white;">자료관리</a></li>
+         <li class="nav-item"><a class="nav-link" href="#" style="color: white;">전자결제</a></li>
+         <li class="nav-item"><a class="nav-link" href="#" style="color: white;">커뮤니티</a></li>
+        
+						<li class="nav-item" style="margin-left: 100px;">
 							<c:choose>
 					<c:when test="${sessionempno == null }">
 						<a href="LoginForm" class="btn btn-basic pull-light"><i

@@ -40,6 +40,6 @@ public interface MemberDao {
 
 	int addressCount(Member member);
 
-	ArrayList<Member> selectemail();
+	Member selectemail(String email);
 
 }

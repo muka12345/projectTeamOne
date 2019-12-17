@@ -20,11 +20,15 @@
 <meta charset="UTF-8">
 
 <title>projectemail</title>
+<!--google font (한글)  -->
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet">
 <link href="resources/css/layoutheader.css" rel="stylesheet"  type="text/css">
 <link href="resources/css/layoutleftmenu.css" rel="stylesheet"  type="text/css">
 <link href="resources/css/normalize.css" rel="stylesheet"  type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="resources/css/toastr.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <link rel="stylesheet"
@@ -34,8 +38,7 @@
 <body class="main-header">
 	<div class="contatiner">
 		<div id="wrapper">
-			<div class="row col-sm-12">
-			
+			<div>
 				<page:applyDecorator name="layoutheader" />
 				<decorator:getProperty property="page.local_script"></decorator:getProperty>
 			</div>
@@ -69,8 +72,8 @@
 
   <!-- Core plugin JavaScript-->
   <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script src="resources/js/layoutleftmenu.js"></script>
-	<script src="resources/js/toastr.min.js"></script>
+	
+
 	<script src="resources/js/mailbox.js"></script>
 	
 <script src="https://kit.fontawesome.com/6d17a07b11.js"></script>

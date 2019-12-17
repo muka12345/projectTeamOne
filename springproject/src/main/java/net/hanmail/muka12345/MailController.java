@@ -1116,7 +1116,7 @@ public class MailController {
 	@ResponseBody
 	public Member memberToName(@RequestParam String email) {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		Member member = dao.selectOne(email);
+		Member member = dao.selectemail(email);
 		return member;
 	}
 
