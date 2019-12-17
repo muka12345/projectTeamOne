@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hanmail.muka12345.service.WorkerDao">
+	<resultMap type="net.hanmail.muka12345.entities.Memberinsert" id="memberinsertMap">
+		<id property="membercode" column="membercode" />
+		<id property="codedate" column="codedate" />
+		<id property="codeno" column="codeno" />
+		<id property="membername" column="membername" />
+		<id property="position" column="position" />
+		<id property="regular" column="regular" />
+		<id property="memlevel" column="memlevel" />
+		<id property="pcode" column="pcode" />
+		<id property="ccode" column="ccode" />
+		<id property="fcode" column="fcode" />
+		<id property="regdate" column="regdate" />
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.Part" id="partMap">
+		<id property="partcode" column="partcode" />
+		<id property="partname" column="partname" />
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.Company" id="companyMap">
+		<id property="companycode" column="companycode" />
+		<id property="companyname" column="companyname" />
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.Facility" id="facilityMap">
+		<id property="facilitycode" column="facilitycode" />
+		<id property="facilityname" column="facilityname" />
+		<id property="partcode" column="partcode" />
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.Attendance" id="attendanceMap">
+		<id property="membercode" column="membercode" />
+		<id property="workingday" column="workingday" />
+		<id property="absence" column="absence" />
+		<id property="halfday" column="halfday" />
+		<id property="early" column="early" />
+		<id property="late" column="late" />
+		<id property="sick" column="sick" />
+		<id property="curtime" column="curtime" />
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.Attendancelog"
+		id="attendancelogMap">
+		<id property="membercode" column="membercode" />
+		<id property="workingday" column="workingday" />
+		<id property="absence" column="absence" />
+		<id property="halfday" column="halfday" />
+		<id property="early" column="early" />
+		<id property="late" column="late" />
+		<id property="sick" column="sick" />
+		<id property="curtime" column="curtime" />
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.WorkerList" id="workerListMap">
+		<collection property="memberinsert" resultMap="memberinsertMap"></collection>
+		<collection property="part" resultMap="partMap"></collection>
+		<collection property="facility" resultMap="facilityMap"></collection>
+		<collection property="company" resultMap="companyMap"></collection>
+	</resultMap>
+	<resultMap type="net.hanmail.muka12345.entities.AttenList" id="attenListMap">
+		<collection property="attendance" resultMap="attendanceMap"></collection>
+		<collection property="attendancelog" resultMap="attendancelogMap"></collection>
+		<collection property="memberinsert" resultMap="memberinsertMap"></collection>
+		<collection property="part" resultMap="partMap"></collection>
+	</resultMap>
+
+	<insert id="insertRow" parameterType="hashMap">
+		insert into
+		memberinsert(codedate,codeno,membercode,membername, position,
+		regular, memlevel, pcode,ccode, fcode, regdate
+		)values(
+		CURDATE()+0,(select ifnull(max(codeno)+1,1)from memberinsert b),CONCAT(codedate,codeno),
+		#{membername,jdbcType=VARCHAR},
+		#{position,jdbcType=VARCHAR},
+		#{regular,jdbcType=VARCHAR},
+		#{memlevel,jdbcType=INTEGER},
+		#{pcode,jdbcType=VARCHAR},
+		#{ccode,jdbcType=VARCHAR},
+		#{fcode,jdbcType=VARCHAR},
+		(select date_format(NOW(),'%Y.%m.%d %T'))
+		)
+	</insert>
+
+	<select id="selectWorker" resultMap="workerListMap">
+		SELECT
+		A.membercode,A.membername,A.position,A.regdate,A.regular,A.memlevel,B.partname,B.partcode,
+		C.companycode,C.companyname,D.facilitycode,D.facilityname
+		from memberinsert as A, part as
+		B, company as C, facility as D
+		where
+		A.pcode = B.partcode and
+		A.ccode = C.companycode and
+		A.fcode = D.facilitycode
+	</select>
+
+	<delete id="workerDeleteRow" parameterType="String">
+		delete from memberinsert where
+		membercode=#{membercode}
+	</delete>
+
+	<update id="workerModifyRow">
+		update memberinsert set
+		regdate = (select date_format(NOW(),'%Y.%m.%d %T')),
+		membername = #{membername},
+		position = #{position},
+		pcode = #{pcode},
+		fcode = #{fcode},
+		regular = #{regular},
+		ccode = #{ccode},
+		memlevel = #{memlevel}
+		where membercode =
+		#{membercode}
+	</update>
+
+	<select id="attendanceSelect" resultMap="attenListMap">
+		select
+		A.membercode,A.workingday,A.absence,A.halfday,A.early,A.late,A.sick,
+		B.membercode,B.membername,B.position,B.pcode,
+		C.partcode,C.partname
+		from attendance as A,
+		memberinsert as B, part as C
+		where A.membercode = B.membercode and B.pcode = C.partcode;
+	</select>
+
+	<select id="attendanceLog" resultMap="attenListMap">
+		select
+		A.membercode,A.workingday,A.absence,A.halfday,A.early,A.late,A.sick,
+		B.membercode,B.membername,B.position,B.pcode,
+		C.partcode,C.partname
+		from attendancelog as
+		A, memberinsert as B, part as C
+		where A.membercode = B.membercode and B.pcode =
+		C.partcode;
+	</select>
+
+	<update id="attenInsert">
+		update attendance set
+		workingday = date_format(NOW(),'%Y.%m.%d %T'),
+		absence = #{absence},
+		halfday = #{halfday},
+		early = #{early},
+		late = #{late},
+		sick = #{sick},
+		curtime = (select hour(curtime()))
+		where membercode = #{membercode}
+	</update>
+
+	<delete id="attenDeleteRow" parameterType="String">
+		delete from attendancelog where
+		workingday=#{workingday}
+	</delete>
+
+	<insert id="copyLog" parameterType="hashMap">
+		insert into attendancelog select * from attendance
+		as a where a.curtime not in (select curtime from attendancelog);
+	</insert>
+</mapper>
