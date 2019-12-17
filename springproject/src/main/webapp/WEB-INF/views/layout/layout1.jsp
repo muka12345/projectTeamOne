@@ -22,10 +22,13 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="resources/css/mycss.css" />
 <link href="resources/css/layoutheader.css" rel="stylesheet"  type="text/css">
+<link href="resources/css/layoutleftmenu.css" rel="stylesheet"  type="text/css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <decorator:getProperty property="page.local_css" />
 </head>
 <body class="main-header">
@@ -56,7 +59,7 @@
 		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
+	<script src="resources/js/mailbox.js"></script>
 	<script src="resources/js/member.js"></script>
 	<script src="resources/js/checkbox.js"></script>
 

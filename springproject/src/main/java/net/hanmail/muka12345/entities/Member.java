@@ -4,26 +4,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Member {
-	int seq;
-	String name;
-	String empno;
-	String password;
-	String depart;
-	String position;
-	String level;
-	String email;
-	String addr;
-	String addr1;
-	String homeno;
-	String phoneno;
-	String officeno;
-	String imagepath;
-	String nameimage;
-	String workcheck;
-	String joinyyyy;
-	String joinmm;
+	private int seq;
+	private String name;
+	private String empno;
+	private String password;
+	private String depart;
+	private String position;
+	private String level;
+	private String email;
+	private String addr;
+	private String addr1;
+	private String homeno;
+	private String phoneno;
+	private String officeno;
+	private String imagepath;
+	private String nameimage;
+	private String workcheck;
+	private String joinyyyy;
+	private String joinmm;
 	private String find;
-
 	private int startrow;
 	private int endrow;
 	private String selectfind;

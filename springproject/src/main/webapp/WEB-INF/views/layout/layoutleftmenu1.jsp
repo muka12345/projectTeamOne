@@ -26,36 +26,20 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-
-        <li class="active">
-          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>테스트</a>
-          <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-            <li><a href="memberInsertper">개인정보입력(인사부)</a></li>
-            <li><a href="memberDatatable">사원테이블(인사부)</a></li>
-          </ul>
+        <li>
+          <a href="memberInsertper"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>개인정보입력</a>
         </li>
         <li>
-          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span> Shortcut</a>
-          <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-            <li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>link1</a></li>
-            <li><a href="memberInfo"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>사원테이블(인사부)</a></li>
-
-          </ul>
+          <a href="memberDatatable"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>사원테이블</a>
         </li>
         <li>
-          <a href="payCheckForm"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>급여입력(인사부)</a>
+          <a href="payCheckForm"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>급여입력</a>
         </li>
         <li>
-          <a href="payDatatable"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>급여테이블(인사부)</a>
+          <a href="payDatatable"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>급여테이블</a>
         </li>
         <li>
-          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>About</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Services</a>
-        </li>
-        <li>
-          <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
+          <a href="javascript:openAddress();"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>주소록</a>
         </li>
       </ul>
     </div>
