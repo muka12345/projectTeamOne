@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="passwordChange">
+	<form method="post" action="memberpassChange">
 		<div class="container">
 			<div class="row"
 				style="margin-top: 30px; text-align: center; margin-left: 250px">

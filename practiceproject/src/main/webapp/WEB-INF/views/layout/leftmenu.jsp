@@ -22,9 +22,9 @@
 			<nav class="navbar" style="text-align: center;"background-color:#760c0c;">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="MemberInsertper">개인정보입력(인사부)</a></li>
+						href="memberInsertper">개인정보입력(인사부)</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="MemberDatatable">사원테이블(인사부)</a></li>
+						href="memberDatatable">사원테이블(인사부)</a></li>
 					<li class="nav-item"><a class="nav-link" href="payCheckForm">급여입력(인사부)</a></li>
 					<li class="nav-item"><a class="nav-link" href="payDatatable">급여테이블(인사부)</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Link 7</a></li>

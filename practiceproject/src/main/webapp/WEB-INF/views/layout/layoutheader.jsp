@@ -47,20 +47,20 @@
 			<div style="margin-left: 1400px">
 				<c:choose>
 					<c:when test="${sessionempno == null }">
-						<a href="LoginForm" class="btn btn-warning pull-right"><i
+						<a href="LoginForm" class="btn btn-basic pull-light"><i
 							class="fab fa-invision"></i> Login</a>
 					</c:when>
 					<c:otherwise>
 						<div class="dropdown">
-							<button type="button" class="btn btn-primary dropdown-toggle"
+							<button type="button" class="btn btn-outline-primary dropdown-toggle"
 								data-toggle="dropdown">
 								<img src="${sessionimage}" width="20px" height="20px"
 									class="img-circle"> ${sessionname}
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="myInfo"> <i
+								<a class="dropdown-item" href="memberInfo"> <i
 									class="fas fa-info" style="color: #4285F4"></i> 내정보수정
-								</a> <a class="dropdown-item" href=passwordChangeForm><i
+								</a> <a class="dropdown-item" href=memberpassForm><i
 									class="fas fa-sign-out-alt" style="color: #4285F4"></i>비밀번호 변경</a>
 								<a class="dropdown-item" href="Logout"><i
 									class="fas fa-sign-out-alt" style="color: #4285F4"></i> 로그아웃</a>  <a
